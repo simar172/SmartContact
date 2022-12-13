@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section class="mg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<br />
+					<div class="my-card">
+						<form th:action="@{/check/pass}" method="post">
+							<div th:if="${flag}"
+								class="alert alert-danger alert-dismissible fade show"
+								role="alert">
+								<strong><h1>Failure.</h1></strong>
+								<h3>Your passwords does not match!!!</h3>
+								<h3>Try again :(</h3>
+								<button type="button" class="close" data-dismiss="alert"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1"><h4>New Password</h4></label> <input
+									type="text" class="form-control " id="exampleInputEmail1"
+									placeholder="Enter Old password" name="newpass">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1"><h4>Confirm
+										Password</h4></label> <input type="text" class="form-control "
+									id="exampleInputEmail1" placeholder="Enter New password"
+									name="confpass">
+							</div>
+							<button class="btn btn-success" type="submit">Change</button>
+							<button class="btn btn-warning ml-2" type="reset">Reset
+								changes</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

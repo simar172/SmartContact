@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section class="">
+		<div class="container-fluid" th:if="${cdetail}">
+			<div class="card mr-3 ml-3">
+				<div class="card-body">
+					<div class="container text-center">
+						<img class="rounded-pill"
+							th:src="@{'/Images/'+${user}+'/contact/'+${cdetail.image}}"
+							style="width: 40%; border: 10px solid green;"> <br> <br>
+						<h1 class="text-uppercase"
+							th:text="${cdetail.name}+${cdetail.secondname}"></h1>
+						<br> <br>
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="row">ID</th>
+									<td class="text-uppercase" th:text="${cdetail.id}"></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">Name</th>
+									<td class="text-uppercase" th:text="${cdetail.name}"></td>
+								</tr>
+								<tr>
+									<th scope="col">Second Name</th>
+									<td class="text-uppercase" th:text="${cdetail.secondname}"></td>
+								</tr>
+								<tr>
+									<th scope="col">Phone Number</th>
+									<td class="text-uppercase" th:text="${cdetail.phone}"></td>
+								</tr>
+								<tr>
+									<th scope="col">Email</th>
+									<td class="" th:text="${cdetail.email}"></td>
+								</tr>
+							</tbody>
+
+
+
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:unless="${cdetail}" class="container">
+
+			<div class="alert alert-warning" role="alert">
+				<h4 class="alert-heading">You moved to wrong URL</h4>
+				<p>Try reloading!!!
+				<hr>
+				<p class="mb-0">
+					Have a safe journey
+					<!!/p>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

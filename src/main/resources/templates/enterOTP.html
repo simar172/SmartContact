@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace=base::layout(~{::section})>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:inline="text"> [[${#session.removeAttribute('msg')}]]</th:block>
+
+	<section class="mg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<br />
+					<div class="my-card">
+
+						<h1 class="textsm">Enter OTP to change password</h1>
+						<div th:if="${session.msg}"
+							class="alert alert-success alert-dismissible fade show"
+							role="alert">
+							<h1>
+								<strong class="textsm">Success!</strong>
+							</h1>
+							<h3 class="textsm">OTP sent to your Email ID!!</h3>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div th:if="${flag}"
+							class="alert alert-danger alert-dismissible fade show"
+							role="alert">
+							<h1>
+								<strong>Fail!</strong>
+							</h1>
+							<h3>Wrong OTP!! Please check your OTP and enter again</h3>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+
+
+						<br>
+						<form th:action="@{/proccessing/OTP}" method="post">
+							<div class="form-group">
+
+								<label for="exampleInputEmail1">Enter OTP</label> <input
+									type="number" class="form-control" id="exampleInputEmail1"
+									placeholder="Enter OTP" name="otp" aria-describedby="emailHelp">
+							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

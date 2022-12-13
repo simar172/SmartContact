@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<script>
+			document.querySelector(".item").classList.remove("active");
+			document.querySelector("#home-link").classList.add("active")
+		</script>
+		<div class="card mr-3 ml-3 prsnlc">
+			<div class="card-body">
+				<h1 class="card-title">Your Users</h1>
+				<div class="card-text">
+					<div class="table-responsive">
+						<table class="table ">
+							<thead>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Name</th>
+									<th scope="col">Email</th>
+									<th scope="col">About</th>
+									<th scope="col">Role</th>
+									<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="c:${list}">
+									<th scope="row" th:text="${c.id}"></th>
+									<td th:text="${c.name}"></td>
+
+									<td><img class="contactImage rounded-pill"
+										th:src="@{'/Profile/'+${c.email}+'/'+${c.image}}"
+										alt="" /></td>
+									<td th:text="${c.email}"></td>
+									<td th:text="${c.about}"></td>
+									<td th:text="${c.role}"></td>
+
+									<td style="display: flex"><a
+										th:onclick="|deletebyId(${c.id})|"
+										class="btn btn-danger rounded-pill"><i
+											class="fa-sharp fa-solid fa-user-minus"></i></a>&nbsp
+										<form method="post" th:action="@{'/normal/update/'+${c.id}}">
+											<button class="btn btn-primary rounded-pill">
+												<i class="fa-solid fa-pen"></i>
+											</button>
+
+										</form></td>
+								</tr>
+
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

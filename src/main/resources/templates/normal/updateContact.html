@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+<body>
+	<section class="">
+		<script
+			src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"
+			referrerpolicy="origin"></script>
+		<script>
+			tinymce.init({
+				selector : '#mytextarea'
+			});
+			
+		</script>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+
+					<form method="post" th:action="@{/normal/updateContact}"
+						th:object="${contact}" enctype="multipart/form-data">
+						<input type="text" th:value="${contact.id}" name="id" hidden>
+						<div class="my-card">
+							<div th:if="${session.msg}"
+								class="alert alert-success alert-dismissible fade show"
+								role="alert">
+								<strong>Holy guacamole!</strong> You should check in on some of
+								those fields below.
+								<button type="button" class="close" data-dismiss="alert"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<h1 align="center">Update Contact</h1>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Name</label> <input
+									th:value="${contact.name}" type="text"
+									class="form-control name" id="exampleInputEmail1"
+									placeholder="Enter Name" name="name"
+									aria-describedby="emailHelp">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label> <input
+									th:value="${contact.email}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Enter Email" name="email"
+									aria-describedby="emailHelp">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Second Name</label> <input
+									th:value="${contact.secondname}" type="text"
+									class="form-control" id="exampleInputEmail1"
+									placeholder="Enter Second Name" name="secondname"
+									aria-describedby="emailHelp">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Work</label> <input
+									th:value="${contact.work}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Enter work" name="work"
+									aria-describedby="emailHelp">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Phone</label> <input
+									th:value="${contact.phone}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Enter Phone Number"
+									name="phone" aria-describedby="emailHelp">
+							</div>
+							<div class="mb-3">
+								<label for="mytextarea" class="form-label">All about
+									you.</label>
+								<textarea class="form-control" th:value="${contact.description}"
+									name="description" id="mytextarea" rows="3"></textarea>
+							</div>
+							<div class="custom-file">
+
+								<input type="file" class="custom-file-input"
+									th:value="${contact.image}" name="profImage"
+									aria-describedby="inputGroupFileAddon01"> <label
+									class="custom-file-label" for="inputGroupFile01">Choose
+									file</label>
+							</div>
+							<br> <br>
+							<h6 align="center">
+								<button class="btn btn-primary" style="width: 50%;">Submit</button>
+							</h6>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<script>
+			document.querySelector(".item").classList.remove("active");
+			document.querySelector("#all").classList.add("active")
+		</script>
+		<div class="card mr-3 ml-3 prsnlc">
+			<div class="card-body">
+				<h1 class="card-title">Your contacts</h1>
+				<div class="card-text">
+					<div class="table-responsive">
+						<table class="table ">
+							<thead>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Name</th>
+									<th scope="col">Images</th>
+									<th scope="col">Email</th>
+									<th scope="col">Phone</th>
+									<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="c:${list}">
+									<th scope="row" th:text="${c.id}"></th>
+									<td th:text="${c.name}"></td>
+									<td><img class="contactImage rounded-pill"
+										th:src="@{'/Images/'+${uname}+'/ctc'+${c.email}+'/contact/'+${c.image}}"
+										alt="" /></td>
+									<td><a th:href="@{'/normal/cuser/'+${c.id}}"> <span
+											th:text="${c.email}"></span></td>
+									</a>
+									<td th:text="${c.phone}"></td>
+									<td style="display: flex"><a
+										th:onclick="|deletebyId(${c.id})|"
+										class="btn btn-danger rounded-pill"><i
+											class="fa-sharp fa-solid fa-user-minus"></i></a>&nbsp
+										<form method="post" th:action="@{'/normal/update/'+${c.id}}">
+											<button class="btn btn-primary rounded-pill">
+												<i class="fa-solid fa-pen"></i>
+											</button>
+
+										</form></td>
+								</tr>
+
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+<nav aria-label="Page navigation example">
+								<ul class="pagination justify-content-center">
+									<li class="page-item"
+										th:classappend="${currentPage==0?'disabled':''}"><a
+										th:href="@{'/normal/contacts/'+${currentPage-1}}"
+										class="page-link">Previous</a></li>
+
+									<li class="page-item"
+										th:each="i:${#numbers.sequence(1,totalPages)}"
+										th:classappend="${currentPage==i-1?'active':''}"><a
+										class="
+									page-link" th:text="${i}"
+										th:href="@{'/normal/contacts/'+${i-1}}"></a></li>
+
+
+									<!-- 	<li th:each="i: ${#numbers.sequence(1, totalPages)}"><a
+							th:text="${i}" class="page-link" href="#"></a></li> -->
+									<li class="page-item"
+										th:classappend="${currentPage+1==totalPages}?'disabled':''"><a
+										class="page-link"
+										th:href="@{'/normal/contacts/'+${currentPage+1}}">Next</a></li>
+								</ul>
+							</nav>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace=base::layout(~{::section})>
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${title}"></title>
+</head>
+<body>
+	<section>
+
+		<main>
+			<div class="intro">
+				<h1>Smart Contact Manager</h1>
+				<p style="font-size: x-small;">Start Collecting your contacts in
+					very smarter way.We provide very efficient and smarter way of
+					handling contacts</p>
+				<a href="/signin"><button>Get Started</button></a>
+			</div>
+			<div class="achievements">
+				<div class="work">
+					<i class="fas fa-atom"></i>
+					<p class="work-heading">Easy to use</p>
+					<p class="work-text">I have worked on many projects and I am
+						very proud of them. I am a very good developer and I am always
+						looking for new projects.</p>
+				</div>
+				<div class="work">
+					<i class="fas fa-skiing"></i>
+					<p class="work-heading">Efficient</p>
+					<p class="work-text">I have a lot of skills and I am very good
+						at them. I am very good at programming and I am always looking for
+						new skills.</p>
+				</div>
+				<div class="work">
+					<i class="fas fa-ethernet"></i>
+					<p class="work-heading">Sustainable</p>
+					<p class="work-text">I have a lot of network skills and I am
+						very good at them. I am very good at networking and I am always
+						looking for new network skills.</p>
+				</div>
+			</div>
+
+		</main>
+
+	</section>
+</body>
+</html>

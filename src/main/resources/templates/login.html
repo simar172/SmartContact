@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace=base::layout(~{::section})>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section class="mg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<br />
+					<div class="my-card">
+						<div th:if="${param.error}" class="alert alert-danger">Invalid
+							Username or Password!!</div>
+						<div th:if="${param.logout}" class="alert alert-success">You
+							have been logged out!!</div>
+						<h1 align="center">Sign In</h1>
+						<form th:action="@{/do_login}" method="post">
+
+							<div class="form-group">
+								<label for="exampleInputEmail1"><h4>Name</h4></label> <input
+									type="text" class="form-control " id="exampleInputEmail1"
+									placeholder="Enter Email" name="username"
+									aria-describedby="emailHelp">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Password</label> <input
+									type="password" class="form-control"
+									placeholder="Enter Password" name="password"
+									id="exampleInputPassword1">
+							</div>
+
+
+
+							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="reset" class="btn btn-danger">Reset</button>
+						</form><br>
+						<a th:href="@{/forgot/OTP}" style="font-size: 15px">Forgot password</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

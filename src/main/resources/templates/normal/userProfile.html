@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section class="">
+		<script>
+			document.querySelector(".item").classList.remove("active");
+			document.querySelector("#prof").classList.add("active")
+		</script>
+		<div class="container-fluid " th:if="${cdetail}">
+			<div class="card mr-3 ml-3 table-responsive">
+				<div class="card-body">
+					<h4 align="right">
+						<span class="badge badge-pill badge-warning"
+							th:text="${cdetail.role}"></span>
+					</h4>
+					<div class="container text-center">
+						<img class="rounded-pill"
+							th:src="@{'/Profile/'+${cdetail.email}+'/'+${cdetail.image}}"
+							style="width: 40%; border: 10px solid green;"> <br> <br>
+						<h1 class="text-uppercase uname" th:text="${cdetail.name}"></h1>
+						<br> <br>
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="row">ID</th>
+									<td class="text-uppercase" th:text="${cdetail.id}"></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">Name</th>
+									<td class="text-uppercase" th:text="${cdetail.name}"></td>
+								</tr>
+
+
+								<tr>
+									<th scope="col">Email</th>
+									<td class="" th:text="${cdetail.email}"></td>
+								</tr>
+								<tr>
+									<th scope="col">Account active</th>
+									<td class="text-uppercase"><h5>
+											<span th:text="${cdetail.enabled}"
+												th:classappend="${!cdetail.enabled ? 'badge-danger':'badge-success'}"
+												class="badge badge-pill "></span>
+										</h5></td>
+								</tr>
+								<tr>
+									<th scope="col">About</th>
+									<td class="" th:text="${cdetail.about}"></td>
+								</tr>
+							</tbody>
+
+
+
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:unless="${cdetail}" class="container">
+
+			<div class="alert alert-warning" role="alert">
+				<h4 class="alert-heading">You moved to wrong URL</h4>
+				<p>Try reloading!!!
+				<hr>
+				<p class="mb-0">
+					Have a safe journey
+					<!!/p>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
